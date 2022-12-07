@@ -52,7 +52,7 @@ form {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1.2vw;
+  padding: 0.3vw;
 }
 
 #book-list .book-wrapper:nth-child(odd) {
