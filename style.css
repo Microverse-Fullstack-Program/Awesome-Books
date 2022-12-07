@@ -1,0 +1,56 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: max-content;
+  margin: auto;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+h1 {
+  width: max-content;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: max-content;
+  margin: auto;
+}
+
+.error {
+  display: none;
+}
+
+.error.active {
+  display: block;
+  color: red;
+}
+
+.book-list {
+  width: 80vw;
+  border: 1px #124551 solid;
+  gap: 15px;
+}
+
+#book-list div {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  padding: 1.2vw;
+}
+
+#book-list div:nth-child(odd) {
+  background: rgb(194, 187, 187);
+}
