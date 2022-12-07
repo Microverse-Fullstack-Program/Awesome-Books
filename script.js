@@ -3,25 +3,27 @@ const bookAuthor = document.querySelector('#book-author');
 const addBtn = document.querySelector('#add-book');
 const errorMsg = document.querySelector('.error');
 
-class book {
-    constructor (title, author, id) {
-      this.title = title;
-      this.author = author;
-      this.id = id;
-    }
+class Book {
+  constructor(title, author, id) {
+    this.title = title;
+    this.author = author;
+    this.id = id;
+  }
 
-    displayBooks = (title=this.title, author=this.author, id = this.id) => {
+    displayBooks = (title = this.title, author = this.author, id = this.id) => {
       const addNewBook = document.createElement('div');
       addNewBook.id = id;
+      addNewBook.className = 'book-wrapper';
       addNewBook.innerHTML = `
-        <p>${title}</p>
-        <p>${author}</p>
+        <div class="book-info">
+          <p>"${title}" </p>
+          <p>by ${author}</p>
+        </div>
+
         <button class="remove-btn ${id}">Remove</button>
       `;
-      console.log("i am here2")
       const booksList = document.querySelector('#book-list');
       booksList.appendChild(addNewBook);
-
       const removeBtn = document.querySelectorAll('.remove-btn');
       removeBtn.forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -45,7 +47,7 @@ class book {
         });
       });
     };
-  } //end of the class
+} // end of the class
 
 addBtn.addEventListener('click', (event) => {
   event.preventDefault();
@@ -54,7 +56,7 @@ addBtn.addEventListener('click', (event) => {
   const id = Date.now();
   if (bookTitle.value && bookAuthor.value) {
     errorMsg.classList.remove('active');
-    const newBook = new book (title, author, id);
+    const newBook = new Book(title, author, id);
     bookTitle.value = '';
     bookAuthor.value = '';
     let books = localStorage.getItem('books');
@@ -65,7 +67,7 @@ addBtn.addEventListener('click', (event) => {
     }
     books.push(newBook);
     localStorage.setItem('books', JSON.stringify(books));
-    newBook.displayBooks (title, author, id);
+    newBook.displayBooks(title, author, id);
   } else {
     errorMsg.innerHTML = 'Please enter book details';
     errorMsg.classList.add('active');
@@ -77,7 +79,7 @@ window.addEventListener('DOMContentLoaded', () => {
   books = JSON.parse(books);
   if (books) {
     books.forEach((bk) => {
-      const theBook = new book(bk.title, bk.author, bk.id)
+      const theBook = new Book(bk.title, bk.author, bk.id);
       theBook.displayBooks();
     });
   }
